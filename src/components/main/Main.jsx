@@ -1,5 +1,6 @@
 import { Carousel, Container, Button, Card, Row, Col } from 'react-bootstrap';
 import instituicoesEnsino from "../../datasets/censoEscolar.js";
+import ranking from "../../datasets/matriculas_pb.json";
 import "./main.css";
 
 const Main = () => {
@@ -24,17 +25,19 @@ const Main = () => {
 
       {/* Cartões da IE */}
 
-      <Container>
+      <Container className="Cards-instituicoes">
         <Row>
-          {instituicoesEnsinoJson.map((instituicaoEnsino) => {
+          {ranking.map((instituicaoEnsino) => {
             return (
               <Col>
                 <Card style={{ width: '18rem' }}>
-                  <Card.Img variant="top" src={instituicaoEnsino.urlImagem} style={{height:'189.45px'}} />
+                  <Card.Img variant="top" src={`/public/${instituicaoEnsino.CO_ENTIDADE}.jpg`} style={{height:'189.45px'}} />
                   <Card.Body>
-                    <Card.Title>{instituicaoEnsino.nome}</Card.Title>
+                    <Card.Title>{instituicaoEnsino.NO_ENTIDADE}</Card.Title>
                     <Card.Text>
-                      Município: {instituicaoEnsino.municipio}
+                      Município: {instituicaoEnsino.NO_MUNICIPIO}<br/>
+                      Estado: {instituicaoEnsino.NO_UF}<br/>
+                      Nº matrículas do ensino básico:{instituicaoEnsino.QT_MAT_BAS}
                     </Card.Text>
                     <Button variant="primary">Go somewhere</Button>
                   </Card.Body>
